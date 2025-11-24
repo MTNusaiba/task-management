@@ -1,37 +1,73 @@
 "GET /tasks:" 
-[{"id":1,"title":"Learn Node.js","completed":false,"priority":"high","createdAt":"2025-11-17T13:34:17.068Z"},{"id":2,"title":"Build REST API","completed":false,"priority":"medium","createdAt":"2025-11-17T13:34:17.068Z"},{"id":3,"title":"Test with Postman","completed":true,"priority":"low","createdAt":"2025-11-17T13:34:17.068Z"},{"id":4,"title":"Document API","completed":false,"priority":"medium","createdAt":"2025-11-17T13:34:17.068Z"},{"id":5,"title":"Push to GitHub","completed":false,"priority":"high","createdAt":"2025-11-17T13:34:17.068Z"}]"" 
-"GET /task/1:" 
-{"id":1,"title":"Learn Node.js","completed":false,"priority":"high","createdAt":"2025-11-17T13:34:17.068Z"}"" 
-"GET /task/9999 (expect 404 Not Found):" 
+[{"id":1,"title":"Learn Node.js","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"},{"id":2,"title":"Build REST API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":3,"title":"Test with Postman","completed":true,"priority":"low","createdAt":"2025-11-24T15:08:27.560Z"},{"id":4,"title":"Document API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":5,"title":"Push to GitHub","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"}]"" 
+"GET /tasks?page=1&limit=5:" 
+[{"id":1,"title":"Learn Node.js","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"},{"id":2,"title":"Build REST API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":3,"title":"Test with Postman","completed":true,"priority":"low","createdAt":"2025-11-24T15:08:27.560Z"},{"id":4,"title":"Document API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":5,"title":"Push to GitHub","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"}]"" 
+"GET /tasks?q=Sample:" 
+[{"id":1,"title":"Learn Node.js","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"},{"id":2,"title":"Build REST API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":3,"title":"Test with Postman","completed":true,"priority":"low","createdAt":"2025-11-24T15:08:27.560Z"},{"id":4,"title":"Document API","completed":false,"priority":"medium","createdAt":"2025-11-24T15:08:27.560Z"},{"id":5,"title":"Push to GitHub","completed":false,"priority":"high","createdAt":"2025-11-24T15:08:27.560Z"}]"" 
+"GET /tasks/1:" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /tasks/1</pre>
+</body>
+</html>
+"" 
+"GET /tasks/9999 (expect 404):" 
 HTTP/1.1 404 Not Found
 X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 26
-ETag: W/"1a-D4dsL3U5Autp3bKNpxD/le70vNM"
-Date: Mon, 17 Nov 2025 13:45:30 GMT
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 149
+Date: Mon, 24 Nov 2025 15:09:50 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
-{"error":"Task not found"}"" 
-"GET /task/abc (expect 400 Bad Request):" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /tasks/9999</pre>
+</body>
+</html>
+"" 
+"GET /tasks/abc (expect 400):" 
 HTTP/1.1 404 Not Found
 X-Powered-By: Express
-Content-Type: application/json; charset=utf-8
-Content-Length: 26
-ETag: W/"1a-D4dsL3U5Autp3bKNpxD/le70vNM"
-Date: Mon, 17 Nov 2025 13:45:40 GMT
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 148
+Date: Mon, 24 Nov 2025 15:10:01 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
-{"error":"Task not found"}"" 
-"POST /tasks (valid request):" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /tasks/abc</pre>
+</body>
+</html>
+"" 
+"POST /tasks (valid):" 
 HTTP/1.1 404 Not Found
 X-Powered-By: Express
 Content-Security-Policy: default-src 'none'
 X-Content-Type-Options: nosniff
 Content-Type: text/html; charset=utf-8
 Content-Length: 145
-Date: Mon, 17 Nov 2025 13:45:51 GMT
+Date: Mon, 24 Nov 2025 15:10:11 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -46,14 +82,14 @@ Keep-Alive: timeout=5
 </body>
 </html>
 "" 
-"POST /tasks (missing title expect 400):" 
+"PUT /tasks/1:" 
 HTTP/1.1 404 Not Found
 X-Powered-By: Express
 Content-Security-Policy: default-src 'none'
 X-Content-Type-Options: nosniff
 Content-Type: text/html; charset=utf-8
-Content-Length: 145
-Date: Mon, 17 Nov 2025 13:49:35 GMT
+Content-Length: 146
+Date: Mon, 24 Nov 2025 15:10:26 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
@@ -64,9 +100,65 @@ Keep-Alive: timeout=5
 <title>Error</title>
 </head>
 <body>
-<pre>Cannot POST /tasks</pre>
+<pre>Cannot PUT /tasks/1</pre>
+</body>
+</html>
+"" 
+"DELETE /tasks/1:" 
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 149
+Date: Mon, 24 Nov 2025 15:10:52 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot DELETE /tasks/1</pre>
+</body>
+</html>
+"" 
+"GET /tasks/deleted:" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /tasks/deleted</pre>
+</body>
+</html>
+"" 
+"PUT /tasks/1/restore:" 
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 154
+Date: Mon, 24 Nov 2025 15:12:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot PUT /tasks/1/restore</pre>
 </body>
 </html>
 "" 
 "GET /health:" 
-{"status":"healthy","uptime":931.4824765}"" 
+{"status":"healthy","uptime":229.0988273}"" 
